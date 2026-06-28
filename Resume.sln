@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36121.58 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tastehub", "Tastehub\Tastehub.csproj", "{18D8955F-E0F9-4458-91E0-2A9D073EABBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume", "Resume\Resume.csproj", "{18D8955F-E0F9-4458-91E0-2A9D073EABBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tastehub.Service", "TastehubService\Tastehub.Service.csproj", "{F9ECB5FF-5F51-4934-B717-49873879C369}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Service", "ResumeService\Resume.Service.csproj", "{F9ECB5FF-5F51-4934-B717-49873879C369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tastehub.Model", "TastehubModel\Tastehub.Model.csproj", "{F69B9D13-9360-4815-AA6C-D42E1E38DF28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Model", "ResumeModel\Resume.Model.csproj", "{F69B9D13-9360-4815-AA6C-D42E1E38DF28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tastehub.Core", "TastehubCore\Tastehub.Core.csproj", "{267AAC19-34BE-4E2D-A821-177B72BF01DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Core", "ResumeCore\Resume.Core.csproj", "{267AAC19-34BE-4E2D-A821-177B72BF01DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TastehubScript", "Tastehubscript\TastehubScript.csproj", "{1F97AE89-F964-4E00-A18E-825E3B0A1727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeScript", "Resumescript\ResumeScript.csproj", "{1F97AE89-F964-4E00-A18E-825E3B0A1727}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tastehub.Utility", "Utility\Tastehub.Utility.csproj", "{55EA5037-AE36-4F87-A2BD-475980734654}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Utility", "Utility\Resume.Utility.csproj", "{55EA5037-AE36-4F87-A2BD-475980734654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

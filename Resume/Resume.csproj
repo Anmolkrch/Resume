@@ -1739,17 +1739,17 @@
     <Folder Include="Views\Stripe\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TastehubModel\Tastehub.Model.csproj">
+    <ProjectReference Include="..\ResumeModel\Resume.Model.csproj">
       <Project>{f69b9d13-9360-4815-aa6c-d42e1e38df28}</Project>
-      <Name>Tastehub.Model</Name>
+      <Name>Resume.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TastehubService\Tastehub.Service.csproj">
+    <ProjectReference Include="..\ResumeService\Resume.Service.csproj">
       <Project>{f9ecb5ff-5f51-4934-b717-49873879c369}</Project>
-      <Name>Tastehub.Service</Name>
+      <Name>Resume.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utility\Tastehub.Utility.csproj">
-      <Project>{55EA5037-AE36-4F87-A2BD-475980734654}</Project>
-      <Name>Tastehub.Utility</Name>
+    <ProjectReference Include="..\Utility\Resume.Utility.csproj">
+      <Project>{55ea5037-ae36-4f87-a2bd-475980734654}</Project>
+      <Name>Resume.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
