@@ -1,0 +1,95 @@
+﻿@model Tastehub.Model.ViewModel.ResumeUploadViewModel
+@{
+    ViewBag.Title = "Upload Resume";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Resume Upload</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Resume</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @using (Html.BeginForm("UploadResume", "Resume",
+                        FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.UserId)
+
+                        <div class="card-body">
+                            <h4 class="card-title">Resume Information</h4>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">Upload Resume</label>
+                                <div class="col-sm-9">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="ResumeFile" id="ResumeFile" required>
+                                        <label class="custom-file-label" for="ResumeFile">Choose PDF/DOC file...</label>
+                                        @Html.ValidationMessage("ResumeFile", "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">Email (parsed)</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">Phone (parsed)</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>*@
+                        </div>
+
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-success">Upload</button>
+                                <a href="@Url.Action("Index", "Home")" class="btn btn-danger">Cancel</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                @if (!string.IsNullOrEmpty(Model.FilePath))
+                {
+                    <div class="card">
+                        <div class="el-card-item">
+                            <div class="el-card-avatar el-overlay-1">
+                                <p class="text-center">Uploaded File:</p>
+                                <p class="text-center">@System.IO.Path.GetFileName(Model.FilePath)</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer text-center">
+        All Rights Reserved by Tastehub. Designed and Developed by
+        <a href="http://brajeshkumar.co.in/">Brajesh Kumar</a>.
+    </footer>
+</div>

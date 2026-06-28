@@ -1,0 +1,156 @@
+﻿@model TastehubModel.ViewModel.GalleryViewModel
+@{
+    ViewBag.Title = "AddGallery";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Image Details</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @using (Html.BeginForm("AddGallery", "Admin",
+                        new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+                        new { @class = "form-horizontal", role = "form", @id = "formAddWebsite", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.id)
+                        @*<input type="hidden" id="ddvalue" value="@Model.TypeId"/>*@
+                    <div class="card-body">
+                        <h4 class="card-title">Gallery Info</h4>
+                        <div class="form-group row">
+                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Album Image</label>
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(x => x.TypeId, new SelectList(@ViewBag.AlbumData, "id", "AlbumName"),
+                               "--- Select Album ---",
+                                 new { @Id = "ddlAlbum", @class = "form-control" , @required = "" })
+                                @Html.ValidationMessageFor(m => m.TypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Title</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Image Title" })
+                                @Html.ValidationMessageFor(m => m.GalleryName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.GalleryName, new { @class = "form-control", @placeholder = "Image Description", @required = "" })
+                                @Html.ValidationMessageFor(m => m.GalleryName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @Html.HiddenFor(x => x.GalleryPath)
+                        @*<div class="form-group row">
+                            <label for="lname" class="col-sm-3 text-right control-label col-form-label">Image Path</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.GalleryPath, new { @class = "form-control", @placeholder = "Gallery Path" })
+                                @Html.ValidationMessageFor(m => m.GalleryPath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">File Upload</label>
+                            <div class="col-md-9">
+                                <div class="custom-file">
+                                    @if (Model.id == 0)
+                                    {
+                                        <input type="file" class="custom-file-input" name="galleryImage" id="galleryImage" required="">
+                                    }
+                                    else
+                                    {
+                                        <input type="file" class="custom-file-input" name="galleryImage" id="galleryImage" >
+                                    }
+                                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <a href="@Url.Action("ManageGallery", "Admin" )" class="btn btn-danger" name="Cancel">Cancel</a>
+                                @*<button type="submit" class="btn btn-primary">Reset</button>
+                                    <button type="submit" class="btn btn-info">Edit</button>
+                                    <button type="submit" class="btn btn-danger">Cancel</button>*@
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+
+            </div>
+         
+            <div class="col-md-3">
+                @if (Model.GalleryPath != "")
+                {
+                    <div class="card">
+                        <div class="el-card-item">
+                            <div class="el-card-avatar el-overlay-1">
+                                <img src="@Model.GalleryPath" style="width: 100%;"/>
+                            </div>
+
+                        </div>
+                    </div>}
+            </div>
+        </div>
+        <!-- editor -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by . Designed and Developed by <a href="http://brajeshkumar.co.in/">Brajesh Kumar</a><a href="http://brajeshkumar.co.in/"></a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<script src="~/Assets/js/jquery-2.1.4.min.js"></script>
+
+

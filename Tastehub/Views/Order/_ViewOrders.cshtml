@@ -1,0 +1,56 @@
+﻿@model List<TastehubModel.CartModel.OrderDetailViewModel>
+    @{
+    Layout = null;
+    }
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Order Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="row">
+                @foreach (TastehubModel.CartModel.OrderDetailViewModel entity in Model)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1">
+                                    <img src="@entity.ProductImage" alt="user" style="width: 100%;">
+
+                                </div>
+                                <div class="el-card-content" style="text-align: center;">
+                                    <h4 class="m-b-0">@entity.ProductName</h4> <span class="text-muted">
+                                        @entity.Description<br />
+                                    </span><span class="text-muted">@entity.Price</span>
+                                    <span class="text-muted"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+              
+                </div>
+            <div class="row">
+                <div class="md-12">
+                    <div class="card">
+                        <div class="el-card-item">
+                            <div class="el-card-avatar el-overlay-1">
+                                <h4 class="m-b-0">Amount to be Paid : @Model[0].AmountPaid</h4>
+                                <h4 class="m-b-0">Order By : @Model[0].UserName</h4>
+                                <h4 class="m-b-0">Email : @Model[0].Email</h4>
+                                <h4 class="m-b-0">Name :@Model[0].FirstName @Model[0].LastName</h4>
+                            </div>
+                            <div class="el-card-content" style="text-align: center;">
+                                @*<h4 class="m-b-0">@entity.ProductName</h4> <span class="text-muted">
+                                    @entity.Description<br />
+                                </span><span class="text-muted">@entity.Price</span>
+                                <span class="text-muted"></span>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

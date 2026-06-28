@@ -1,0 +1,50 @@
+﻿@model List<TastehubModel.ViewModel.CartViewModel>
+@{
+    ViewBag.Title = "My Orders";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="menu-form">
+    <div class="container">
+        <div class="w3ls-title">
+            <h3 class="agileits-title">My Orders</h3>
+        </div>
+        <div class="menu-info">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="four" aria-labelledby="four-tab">
+                        <div class="tab-info">
+                            @foreach (TastehubModel.ViewModel.CartViewModel entity in Model)
+                            {
+                                <div class="menu-grids menu-grids-mdl">
+                                    <div class="menu-left" style="width: 50%;">
+                                        <h4>@entity.Tbl_Product.ProductName</h4>
+                                        <p>@entity.Tbl_Product.Description</p>
+                                        <p>Spices =>@entity.Spices</p>
+                                    </div>
+                                    <div class="menu-right" style="width: 10%;">
+                                        <h5>@entity.Tbl_Product.Price</h5>
+                                    </div>
+                                    <div class="menu-right" style="width: 20%;">
+                                        <img src="@entity.Tbl_Product.ProductImage" style="width: 50%;" />
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="more" style="text-align: center;">
+            <div style="padding-bottom: 14px;">
+                <p>You dont have any item  in your  cart kindly Explore our Menu</p>
+            </div>
+
+            <a href="/Home/Item" data-toggle="modal">Explore Menu</a>
+        </div>
+
+    </div>
+</div>

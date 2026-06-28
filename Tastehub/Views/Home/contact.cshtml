@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<div class="contact">
+    <div class="container">
+        <div class="w3ls-title">
+            <h3 class="agileits-title">Contact Us</h3>
+        </div>
+        <div class="contact-row agileits-w3layouts new-agileinfo">
+            <div class="col-md-6 col-sm-6 contact-w3lsleft">
+                <div class="contact-grid agileits">
+                    <h4>Drop us a line </h4>
+                    <form action="#" method="post">
+                        <input type="text" name="Name" placeholder="Name" required="" id="txtName">
+                        <input type="email" name="Email" placeholder="Email" required="" id="txtEmail">
+                        <input type="text" name="Phone Number" placeholder="Phone Number" required="" id="txtPhone">
+                        <textarea name="Message" placeholder="Message..." required="" id="txtMessage" style="min-height: 6.0em;"></textarea>
+                        <div class="alert alert-success agileits hide" role="alert" id="spanSuccess" style="margin-top: 20px;">
+                            <strong>Well done!</strong> You successfully read this important alert message.
+                        </div>
+                        <input type="button" id="btn_Booking" value="Submit" />
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 contact-w3lsright">
+                <div class="mapouter">
+
+                    <iframe src="https://maps.google.com/maps?q=42%2F7%20Silverstream%20Boulevard%2C%20Kaiapoi%2C%20Christchurch%208073&t=&z=17&ie=UTF8&iwloc=&output=embed"></iframe>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Assets/ApplicationJs/ContactUs.js"></script>
+</div>

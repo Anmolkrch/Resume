@@ -1,0 +1,195 @@
+﻿@model List<TastehubModel.ViewModel.UserDetailViewModel>
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    int Amount = (int)(ViewBag.TotalAmount * 100);
+}
+<script src="https://js.stripe.com/v3/"></script>
+<div class="codes">
+    <div class="container">
+        <div class="w3ls-title">
+            <h3 class="agileits-title">Delivery Details</h3>
+        </div>
+        <div class="grid_3 col-md-12">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label for="radio" class="control-label">Payment Mode</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="radio-inline"><label>
+                        <input type="radio" name="paymentRadio" class="paymentRadio" value="PayOndelivery" checked="">
+                        Pay On delivery</label></div>
+                    <div class="radio-inline"><label>
+                        <input type="radio" name="paymentRadio" class="paymentRadio"  value="Card"> 
+                        Card </label></div>
+                </div>
+                <div class="col-sm-3">
+                    <label for="radio" class="control-label"></label>
+                </div>
+                <div class="col-sm-9">
+                    @*<label for="radio" class="control-label">We only have pay on delivery option now .We are working on other to serve you better</label>*@
+                </div>
+            </div>
+        </div>
+        <div class="grid_3 grid_4">
+            <input type="hidden" id="addresscount" value="@Model.Count" />
+            @if (Model.Count > 0)
+            {
+                foreach (TastehubModel.ViewModel.UserDetailViewModel entity in Model)
+                {
+                    <div class="grid_3 grid_4 col-md-6">
+                        <div class="w3ls-hdg">
+                            <div class="col-md-12">
+                                <b> My Address</b> @if (entity.IsDefault)
+                                {
+                                    <label for="smallinput" class="control-label label-input-sm" style="color:  black;">(Default)</label>
+                                }
+                                <span class="glyphicon glyphicon-edit edit-address" attb="@entity.CurAddress1@entity.Id@entity.UserId">Edit</span>
+                              
+                            </div>
+                            @*<div class="col-md-6">
+                                    <input type="button" id="AddNew" value="Add New Address">
+                                </div>*@
+                        </div>
+                        <input type="hidden" id="hdnAddressId" value="@entity.Id" />
+                        <div class="tab-content disabled-div" id="@entity.CurAddress1@entity.Id@entity.UserId">
+                            <div class="tab-pane active" id="horizontal-form">
+                                <form class="form-horizontal">
+
+                                    <div class="form-group">
+                                        <label for="smallinput" class="col-sm-2 control-label label-input-sm">Address</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control1 input-sm" placeholder="@entity.CurAddress1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="smallinput" class="col-sm-2 control-label label-input-sm">Address</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control1 input-sm" placeholder="@entity.CurAddress2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="smallinput" class="col-sm-2 control-label label-input-sm">City</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control1 input-sm" placeholder="@entity.CurCity">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="smallinput" class="col-sm-2 control-label label-input-sm">Zip Code</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control1 input-sm" placeholder="@entity.CurZipCode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="smallinput" class="col-sm-2 control-label label-input-sm">Mobile</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control1 input-sm" placeholder="@entity.ProfileUrl">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="grid_3 grid_4 col-md-6">
+                    <h3 class="w3ls-hdg">My Address</h3>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="horizontal-form">
+                            <form class="form-horizontal">
+                                <input type="hidden" id="AddressId" value="0" />
+                                <input type="hidden" id="IsDefault" value="true" />
+                                <div class="form-group">
+                                    <label for="smallinput" class="col-sm-2 control-label label-input-sm">CurAddress</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control1 input-sm" id="CurAddress1" placeholder="CurAddress">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="smallinput" class="col-sm-2 control-label label-input-sm">CurAddress</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control1 input-sm" id="CurAddress2" placeholder="Address">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selector1" class="col-sm-2 control-label">Select City</label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownList("CurCity", new SelectList(ViewBag.City, "Id", "CityName"), new { @class = "form-control1" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="smallinput" class="col-sm-2 control-label label-input-sm">ZipCode</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control1 input-sm" id="CurZipCode" placeholder="ZipCode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="smallinput" class="col-sm-2 control-label label-input-sm">Mobile</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control1 input-sm" id="ProfileUrl" placeholder="Mobile">
+                                    </div>
+                                </div>
+                                <div class="more" style="text-align: center;">
+                                    <input type="button" id="btn_Save" class="PlaceOrder" value="Save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+                <div class="grid_3 grid_4 col-md-6">
+                    @if (ViewBag.TotalAmount != null && ViewBag.TotalAmount > 0)
+                    {
+                        <div class="more display" id="dvCOD">
+                            <article>
+                                <label>Amount: $ "@ViewBag.TotalAmount"</label>
+                            </article>
+                            <input type="button" id="btn_PlaceOrder" class="PlaceOrder" value="Order Now">
+                            @*<a href="/Home/PlaceOrder" style="background: #6199ff;color: white;">Place Order</a>*@
+                        </div>
+                        <div class="display-none" id="dvCard">
+                            @*<form action="/Paypal/PaymentWithCreditCard" method="POST">
+            <article>
+                <label>Amount: $ "@ViewBag.TotalAmount"</label>
+            </article>
+            <a href="/Paypal/PaymentWithPaypal"><input type="button" id="btn_PlaceOrder" class="PlaceOrder" value="Pay Order"></a>
+
+        </form>*@
+                            <form action="/Stripe/Charge" method="POST">
+                                <article>
+                                    <label>Amount: $@ViewBag.TotalAmount</label>
+                                </article>
+                                <script src="//checkout.stripe.com/v2/checkout.js"
+                                        class="stripe-button"
+                                        data-key="@ViewBag.StripePublishKey"
+                                        data-locale="auto"
+                                        data-description="Order Charge  @ViewBag.TotalAmount"
+                                        data-amount="@Amount">
+                                </script>
+                            </form>
+                            
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="more" style="text-align: center;">
+                            <div style="padding-bottom: 14px;">
+                                <p>You dont have any item  in your  cart kindly Explore our Menu</p>
+                            </div>
+
+                            <a href="/Home/Item" data-toggle="modal">Explore Menu</a>
+                        </div>
+                    }
+
+
+                </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Assets/ApplicationJs/Order.js"></script>

@@ -1,0 +1,36 @@
+﻿@model List<TastehubModel.ViewModel.AlbumViewModel>
+@{
+    ViewBag.Title = "Album";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="gallery">
+    <div class="container">
+        <div class="title-div">
+            <h3 class="tittle">
+                <span>O</span>ur <span>A</span>lbum
+            </h3>
+            <div class="tittle-style">
+
+            </div>
+        </div>
+       
+        <div class="agileinfo-gallery-row">
+            @foreach (var item in Model)
+            {
+                <div class="col-xs-4 w3gallery-grids">
+                    <a href="@Url.Action("Gallery", "Home",new {albumId=item.id })" class="imghvr-hinge-right figure">
+                        <img src=@item.AlbumImage alt="" title=@item.AlbumImage />
+                        <div class="agile-figcaption">
+                            <h4>@item.AlbumName</h4>
+                        </div>
+                    </a>
+                </div>
+            }
+
+            
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

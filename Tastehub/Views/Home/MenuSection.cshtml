@@ -1,0 +1,114 @@
+﻿<style>
+    li:hover > ul {
+        /* On hover, display the next level's menu */
+        /*display: inline;*/
+
+    }
+
+</style>
+<ul class="nav navbar-nav" id="ulmenulist">
+    <li class="active">
+        <a href="@Url.Action("Index", "Home")" class="effect-3">Home</a>
+    </li>
+    <li class="dropdown" id="dvAboutUs">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            About Us
+            <span class="caret"></span>
+        </a>
+
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=1 })">Principals Message</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=2  })">School Staff</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=3  })">Board of Trustees</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=4  })">Friends of School </a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=5  })">Our Supporter </a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown" id="dvOurSchool">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Our School
+            <span class="caret"></span>
+        </a>
+
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id= 6})">Learning Programme 2018</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=7 })">Achivements</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=9 })">School Care</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=10 })">Property</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown" id="dvExtra">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Extra <span class="caret"></span> Curriculumn
+            
+        </a>
+
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=11 })">Sports</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=12 })">Arts</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=13 })">Camps</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=14 })">Extra Curriculum</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown" id="dvGeneral">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            General Info
+            <span class="caret"></span>
+        </a>
+
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=15 })">Enrollment</a>
+            </li>
+            @*<li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=16 })">Newsletter</a>
+            </li>*@
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=17 })">Meal Program </a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=18 })">Parents Corner</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=19 })">Classes</a>
+            </li>
+            <li>
+                <a href="@Url.Action("OurSchool", "Home",new {id=20 })">Canteen Menu</a>
+            </li>
+        </ul>
+    </li>
+    <li id="dvGallery">
+        <a href="@Url.Action("Album", "Home")" class="effect-3">Gallery</a>
+    </li>
+    <li id="dvContact">
+        <a href="@Url.Action("OurSchool", "Home",new {id= 22})" class="effect-3">Contact Us</a>
+    </li>
+
+</ul>
+   

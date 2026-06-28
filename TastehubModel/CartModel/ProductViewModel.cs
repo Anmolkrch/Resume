@@ -1,0 +1,33 @@
+﻿using System;
+
+namespace TastehubModel.ViewModel
+{
+   public class ProductViewModel
+    {
+        public ProductViewModel()
+        {
+            this.Tbl_Category = new CategoryViewModel();
+        }
+        public int ProductId { get; set; }
+
+        public string ProductName { get; set; }
+
+        public int? CategoryId { get; set; }
+
+        public bool? IsActive { get; set; }
+
+        public bool? IsDelete { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
+
+        public string Description { get; set; }
+
+        public string ProductImage { get; set; }
+
+        public decimal Price { get; set; }
+        public bool? IsFeatured { get; set; }
+        public virtual CategoryViewModel Tbl_Category { get; set; }
+    }
+}

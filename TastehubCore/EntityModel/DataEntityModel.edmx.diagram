@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a0df8c24c4c494a98fa856ad872f0aa" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="indianlotusModel.BookingRequest" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.ContactRequest" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.mtbAlbum" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.Tbl_Cart" Width="1.5" PointX="10.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.Tbl_CartStatus" Width="1.5" PointX="8" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.Tbl_Category" Width="1.5" PointX="5.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.Tbl_Product" Width="1.5" PointX="8" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.Tbl_ShippingDetails" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.tblGallery" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.tblMenu" Width="1.5" PointX="10.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.tblSubMenu" Width="1.5" PointX="13" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.UserDetail" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.User" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="indianlotusModel.UserType" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="indianlotusModel.FK__Tbl_Cart__CartSt__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="indianlotusModel.FK__Tbl_Cart__Produc__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="indianlotusModel.FK_Tbl_Category_Tbl_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="indianlotusModel.FK_tblSubMenu_tblMenu" ManuallyRouted="false" />
+        <AssociationConnector Association="indianlotusModel.FK__UserId__User__Id" ManuallyRouted="false" />
+        <AssociationConnector Association="indianlotusModel.FK__UserTypeId__UserType__Id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="indianlotusModel.mtbCity" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="indianlotusModel.Tbl_PaymentDetails" Width="1.5" PointX="9.375" PointY="11.75" />
+        <EntityTypeShape EntityType="indianlotusModel.ImageCategory" Width="1.5" PointX="11.375" PointY="12.5" />
+        <EntityTypeShape EntityType="indianlotusModel.Image" Width="1.5" PointX="13.625" PointY="12" />
+        <AssociationConnector Association="indianlotusModel.FK__Images__Category__1F98B2C1" />
+        <EntityTypeShape EntityType="indianlotusModel.Education" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="indianlotusModel.Experience" Width="1.5" PointX="5.25" PointY="15.75" />
+        <EntityTypeShape EntityType="indianlotusModel.PersonalDetail" Width="1.5" PointX="5.25" PointY="27.625" />
+        <EntityTypeShape EntityType="indianlotusModel.Resume" Width="1.5" PointX="5.25" PointY="22.125" />
+        <EntityTypeShape EntityType="indianlotusModel.Skill" Width="1.5" PointX="5.25" PointY="24.875" />
+        <AssociationConnector Association="indianlotusModel.FK_Education_User" />
+        <AssociationConnector Association="indianlotusModel.FK_Experience_User" />
+        <AssociationConnector Association="indianlotusModel.FK_PersonalDetail_User" />
+        <AssociationConnector Association="indianlotusModel.FK_Resume_User" />
+        <AssociationConnector Association="indianlotusModel.FK_Skill_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

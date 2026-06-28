@@ -1,0 +1,91 @@
+﻿@model List<TastehubModel.ViewModel.ProductViewModel>
+@using Tastehub.Utility.Helper;
+@using System.Collections;
+@using Newtonsoft.Json;
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    string LogId = "0";
+    if (HttpContext.Current.Request.Cookies["ES"] != null)
+    {
+        var jsonData = SecurityHelper.Decrypt(HttpContext.Current.Request.Cookies["ES"]["US"].ToString());
+        Hashtable decryptedData = JsonConvert.DeserializeObject<Hashtable>(jsonData);
+        LogId = Convert.ToString(decryptedData["LogId"]);
+    }
+}
+<style>
+    .btn-category {
+        text-decoration: none;
+        color: black;
+        border: none;
+        padding: 10px 45px;
+        background-color:white;
+    }
+    .btn-category-bgcolor {
+        background-color: #6199ff !important;
+        color: white !important;
+    }
+    </style>
+<div class="about team">
+    <div class="container">
+        <div class="w3ls-title">
+            <h3 class="agileits-title">Food Items</h3>
+            <div class="more" style="text-align: center;">
+                <a href="/Home/MyCart" data-toggle="modal">Order Now</a>
+            </div>
+            <div class="menu-info" style="width: 90%;">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="btnCategory active" id="0">
+                        <button class="btn-category btn-category-bgcolor"> All</button>
+                    </li>
+                    <li role="presentation" class="btnCategory" id="4">
+                        <button class="btn-category"> Appetizers</button>
+                    </li>
+                    <li role="presentation" class="btnCategory" id="1">
+                        <button class="btn-category">Veg Dishes </button>
+                    </li>
+                    <li role="presentation" class="btnCategory" id="2">
+                        <button class="btn-category"> Non-Veg</button>
+                    </li>
+                    <li role="presentation" class="btnCategory" id="3">
+                        <button class="btn-category">Seafood </button>
+                    </li>
+                    <li role="presentation" class="btnCategory" id="5">
+                        <button class="btn-category">Naan </button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="team-row-agileinfo" id="ct">
+            <input type="hidden" id="hdnUserId" value="@LogId" />
+            @foreach (TastehubModel.ViewModel.ProductViewModel entity in Model)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-6 team-grids @entity.CategoryId">
+                    <div class="thumbnail team-agileits">
+                        <a href="@Url.Action("ItemDetail", "Home",new { Id=entity.ProductId})">
+                            <img class="img-responsive item-image" src=@entity.ProductImage alt="@entity.ProductName" />
+                        </a>
+                        <div class="w3agile-caption">
+                            <a href="@Url.Action("ItemDetail", "Home",new { Id=entity.ProductId})"><h4>@entity.ProductName</h4></a>
+                            <p attr="pro">@entity.Tbl_Category.CategoryName  ($ @entity.Price )</p>
+                            <div class="social-w3licon item-btn-color cart addcart display" full attr="@entity.ProductId" itemid="@entity.ProductId">
+                                Add
+                            </div>
+                            <div class="social-w3licon item-btn-color addcart display-none" multi style="padding: 1.8em;">
+                                <div class="col-md-4 social-button removeCart remove" attr="@entity.ProductId" itemid="@entity.ProductId"><i class="glyphicon glyphicon-remove"></i></div>
+                                <div class="col-md-4 social-button itemcount" style="pointer-events:none;" id="itemcount"> 1 </div>
+                                <div class="col-md-4 social-button cart add" attr="@entity.ProductId" itemid="@entity.ProductId"><i class="fa fa-plus"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"> </div>
+        </div>
+        <div class="more" style="text-align: center;">
+            <a href="/Home/MyCart" data-toggle="modal">Order Now</a>
+        </div>
+    </div>
+</div>
+<script src="~/Assets/ApplicationJs/AddItem.js"></script>

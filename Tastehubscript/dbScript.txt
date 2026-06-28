@@ -1,0 +1,520 @@
+﻿USE [master]
+GO
+/****** Object:  Database [Restaurant]    Script Date: 17-03-2020 23:42:39 ******/
+CREATE DATABASE [Restaurant]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Restaurant', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\Restaurant.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'Restaurant_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\Restaurant_log.ldf' , SIZE = 1536KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [Restaurant] SET COMPATIBILITY_LEVEL = 110
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Restaurant].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Restaurant] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Restaurant] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Restaurant] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Restaurant] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Restaurant] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Restaurant] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Restaurant] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Restaurant] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Restaurant] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Restaurant] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Restaurant] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Restaurant] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Restaurant] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Restaurant] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Restaurant] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [Restaurant] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Restaurant] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Restaurant] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Restaurant] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Restaurant] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Restaurant] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Restaurant] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Restaurant] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [Restaurant] SET  MULTI_USER 
+GO
+ALTER DATABASE [Restaurant] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Restaurant] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Restaurant] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Restaurant] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+USE [Restaurant]
+GO
+/****** Object:  Table [dbo].[BookingRequest]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[BookingRequest](
+	[Id] [bigint] IDENTITY(101,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Email] [varchar](50) NOT NULL,
+	[PhoneNo] [varchar](50) NOT NULL,
+	[People] [int] NOT NULL,
+	[Status] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Time] [varchar](50) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+	[CreatedBy] [varchar](50) NOT NULL,
+	[ModifiedBy] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_BookingRequest] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[ContactRequest]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ContactRequest](
+	[Id] [bigint] IDENTITY(101,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Email] [varchar](50) NOT NULL,
+	[PhoneNo] [varchar](50) NOT NULL,
+	[Message] [varchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+	[CreatedBy] [varchar](50) NOT NULL,
+	[ModifiedBy] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_ContactRequest] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[mtbAlbum]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[mtbAlbum](
+	[id] [bigint] IDENTITY(101,1) NOT NULL,
+	[AlbumName] [varchar](250) NOT NULL,
+	[IsActive] [bit] NOT NULL CONSTRAINT [DF__mtbAlbum__isactive]  DEFAULT ((1)),
+	[CreatedDate] [datetime] NOT NULL CONSTRAINT [DF__mtbAlbum__CreatedDate]  DEFAULT (getdate()),
+	[ModifiedDate] [datetime] NOT NULL CONSTRAINT [DF__mtbAlbum__ModifiedDate]  DEFAULT (getdate()),
+	[CreatedBy] [varchar](50) NOT NULL,
+	[ModifiedBy] [varchar](50) NOT NULL,
+	[AlbumImage] [varchar](max) NULL,
+ CONSTRAINT [PK__mtbAlbum__Id] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblGallery]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblGallery](
+	[id] [bigint] IDENTITY(101,1) NOT NULL,
+	[GalleryName] [varchar](250) NOT NULL,
+	[GalleryPath] [varchar](max) NOT NULL,
+	[TypeId] [bigint] NOT NULL,
+	[IsActive] [bit] NOT NULL CONSTRAINT [DF__tblGallery__isactive]  DEFAULT ((1)),
+	[CreatedDate] [datetime] NOT NULL CONSTRAINT [DF__tblGallery__CreatedDate]  DEFAULT (getdate()),
+	[ModifiedDate] [datetime] NOT NULL CONSTRAINT [DF__tblGallery__ModifiedDate]  DEFAULT (getdate()),
+	[CreatedBy] [varchar](50) NOT NULL,
+	[ModifiedBy] [varchar](50) NOT NULL,
+	[Title] [varchar](250) NULL,
+ CONSTRAINT [PK__tblGallery__Id] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblMenu]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblMenu](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MenuName] [varchar](50) NOT NULL,
+	[MenuDescription] [varchar](50) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+	[CreatedBy] [varchar](50) NOT NULL,
+	[ModifiedBy] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_tblMenu] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblSubMenu]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblSubMenu](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MainMenuId] [int] NOT NULL,
+	[MenuName] [varchar](50) NOT NULL,
+	[MenuText] [varchar](max) NOT NULL,
+	[MenuDescription] [varchar](50) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+	[CreatedBy] [varchar](50) NOT NULL,
+	[ModifiedBy] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_tblSubMenu] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[UserDetails]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[UserDetails](
+	[Id] [bigint] NOT NULL,
+	[DateOfBirth] [datetime] NULL,
+	[Gender] [int] NULL,
+	[CurCountry] [int] NULL,
+	[CurState] [int] NULL,
+	[CurCity] [int] NULL,
+	[CurZipCode] [varchar](50) NULL,
+	[CurAddress1] [varchar](700) NULL,
+	[CurAddress2] [varchar](700) NULL,
+	[ProfileUrl] [varchar](max) NULL,
+ CONSTRAINT [PK_UserDetails] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Users](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[UserTypeId] [bigint] NOT NULL,
+	[FirstName] [nvarchar](50) NULL,
+	[LastName] [nvarchar](50) NULL,
+	[Email] [nvarchar](50) NULL,
+	[PhoneNumber] [varchar](50) NULL,
+	[WorkPhone] [varchar](50) NULL,
+	[UserName] [nvarchar](100) NULL,
+	[SaltKey] [nvarchar](50) NULL,
+	[PasswordHash] [nvarchar](250) NULL,
+	[DefaultPassword] [bit] NULL,
+	[LastLoginDate] [datetime] NULL,
+	[IsOnLine] [bit] NULL,
+	[AccountStatus] [int] NULL,
+	[ReportingTo] [bigint] NULL,
+	[CreatedBy] [bigint] NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[ModifiedBy] [bigint] NULL,
+	[ModifiedOn] [datetime] NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[AssignedRegionId] [bigint] NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[UserTypes]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[UserTypes](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Code] [varchar](10) NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+ CONSTRAINT [PK_UserTypes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[BookingRequest] ON 
+
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (101, N'hghg', N'ghgh@hgfth.jhg', N'2222', 1, 0, CAST(N'2020-02-18 21:58:35.177' AS DateTime), N'10 : 56 PM', 1, CAST(N'2020-02-18 21:58:34.887' AS DateTime), CAST(N'2020-02-18 21:58:35.117' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (102, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 1, 0, CAST(N'2020-06-02 00:00:00.000' AS DateTime), N'10 : 59 PM', 1, CAST(N'2020-02-18 21:59:39.343' AS DateTime), CAST(N'2020-02-18 21:59:42.043' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (104, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 1, 0, CAST(N'2020-06-02 00:00:00.000' AS DateTime), N'11 : 23 PM', 1, CAST(N'2020-02-18 22:24:19.723' AS DateTime), CAST(N'2020-02-18 22:24:20.337' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (105, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 1, 0, CAST(N'2020-05-02 00:00:00.000' AS DateTime), N'11 : 27 PM', 1, CAST(N'2020-02-18 22:28:06.293' AS DateTime), CAST(N'2020-02-18 22:28:06.970' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (106, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 1, 0, CAST(N'2020-07-02 00:00:00.000' AS DateTime), N'11 : 29 AM', 1, CAST(N'2020-02-18 22:29:57.993' AS DateTime), CAST(N'2020-02-18 22:29:57.993' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (108, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 1, 0, CAST(N'2020-02-18 22:33:12.937' AS DateTime), N'11 : 31 AM', 1, CAST(N'2020-02-18 22:32:25.127' AS DateTime), CAST(N'2020-02-18 22:33:15.237' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (109, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 2, 0, CAST(N'2020-04-02 00:00:00.000' AS DateTime), N'11 : 35 AM', 1, CAST(N'2020-02-18 22:34:27.940' AS DateTime), CAST(N'2020-02-18 22:34:28.557' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (110, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 1, 0, CAST(N'2020-07-02 00:00:00.000' AS DateTime), N'11 : 36 PM', 1, CAST(N'2020-02-18 22:37:22.443' AS DateTime), CAST(N'2020-02-18 22:37:22.443' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (111, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 1, 0, CAST(N'2020-02-19 00:50:08.880' AS DateTime), N'12 : 49 AM', 1, CAST(N'2020-02-19 00:50:07.853' AS DateTime), CAST(N'2020-02-19 00:50:08.447' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[BookingRequest] ([Id], [Name], [Email], [PhoneNo], [People], [Status], [Date], [Time], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (112, N'hghg', N'ghgh@hgfth.jhg', N'hgh', 1, 0, CAST(N'2020-02-19 00:50:54.470' AS DateTime), N'12 : 49 AM', 1, CAST(N'2020-02-19 00:50:54.470' AS DateTime), CAST(N'2020-02-19 00:50:54.470' AS DateTime), N'101', N'101')
+GO
+SET IDENTITY_INSERT [dbo].[BookingRequest] OFF
+GO
+SET IDENTITY_INSERT [dbo].[mtbAlbum] ON 
+
+GO
+INSERT [dbo].[mtbAlbum] ([id], [AlbumName], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [AlbumImage]) VALUES (101, N'BikeTrack Opening', 1, CAST(N'2017-07-30 03:06:06.057' AS DateTime), CAST(N'2020-02-17 19:39:24.023' AS DateTime), N'101', N'101', N'http://localhost:52784/Assets/images/gallery/burrito.jpg')
+GO
+INSERT [dbo].[mtbAlbum] ([id], [AlbumName], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [AlbumImage]) VALUES (102, N'Camps', 1, CAST(N'2017-07-30 04:37:28.737' AS DateTime), CAST(N'2020-02-17 19:39:37.257' AS DateTime), N'101', N'101', N'http://localhost:52784/Assets/images/gallery/burrito.jpg')
+GO
+INSERT [dbo].[mtbAlbum] ([id], [AlbumName], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [AlbumImage]) VALUES (103, N'Kapa Haka', 1, CAST(N'2017-07-30 04:37:34.747' AS DateTime), CAST(N'2020-02-17 19:39:43.160' AS DateTime), N'101', N'101', N'http://localhost:52784/Assets/images/gallery/burrito.jpg')
+GO
+INSERT [dbo].[mtbAlbum] ([id], [AlbumName], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [AlbumImage]) VALUES (104, N'Pesifica Perfomance', 1, CAST(N'2017-09-02 11:43:01.287' AS DateTime), CAST(N'2020-02-17 19:40:00.000' AS DateTime), N'101', N'101', N'http://localhost:52784/Assets/images/gallery/burrito.jpg')
+GO
+INSERT [dbo].[mtbAlbum] ([id], [AlbumName], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [AlbumImage]) VALUES (105, N'SingaPore Tour', 1, CAST(N'2018-11-25 07:18:07.700' AS DateTime), CAST(N'2020-02-17 19:40:05.300' AS DateTime), N'101', N'101', N'http://localhost:52784/Assets/images/gallery/burrito.jpg')
+GO
+INSERT [dbo].[mtbAlbum] ([id], [AlbumName], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [AlbumImage]) VALUES (106, N'Swing Group', 1, CAST(N'2018-11-25 08:18:17.920' AS DateTime), CAST(N'2020-02-17 19:39:55.143' AS DateTime), N'101', N'101', N'http://localhost:52784/Assets/images/gallery/burrito.jpg')
+GO
+INSERT [dbo].[mtbAlbum] ([id], [AlbumName], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [AlbumImage]) VALUES (10105, N'c sharp', 0, CAST(N'2018-11-25 20:08:40.780' AS DateTime), CAST(N'2018-11-25 20:09:53.857' AS DateTime), N'101', N'101', N'http://localhost:52784/Assets/images/g1.jpg')
+GO
+INSERT [dbo].[mtbAlbum] ([id], [AlbumName], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [AlbumImage]) VALUES (10106, N'temple', 0, CAST(N'2018-11-26 21:22:53.603' AS DateTime), CAST(N'2018-11-26 21:22:53.603' AS DateTime), N'101', N'101', N'http://localhost:52784/Assets/images/g6.jpg')
+GO
+SET IDENTITY_INSERT [dbo].[mtbAlbum] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tblGallery] ON 
+
+GO
+INSERT [dbo].[tblGallery] ([id], [GalleryName], [GalleryPath], [TypeId], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [Title]) VALUES (101, N'photo1', N'http://localhost:52784/Assets/images/gallery/spinach.jpg', 101, 1, CAST(N'2017-07-30 05:20:01.397' AS DateTime), CAST(N'2020-02-17 19:42:43.133' AS DateTime), N'101', N'101', NULL)
+GO
+INSERT [dbo].[tblGallery] ([id], [GalleryName], [GalleryPath], [TypeId], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [Title]) VALUES (102, N'photo2', N'http://localhost:52784/Assets/images/g1.jpg', 101, 1, CAST(N'2017-07-30 05:20:01.447' AS DateTime), CAST(N'2020-02-20 00:39:17.597' AS DateTime), N'101', N'101', NULL)
+GO
+INSERT [dbo].[tblGallery] ([id], [GalleryName], [GalleryPath], [TypeId], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy], [Title]) VALUES (103, N'photo3', N'http://localhost:52784/Assets/images/gallery/vegetables.jpg', 101, 1, CAST(N'2017-07-30 05:20:32.977' AS DateTime), CAST(N'2020-02-17 19:49:56.240' AS DateTime), N'101', N'101', NULL)
+GO
+SET IDENTITY_INSERT [dbo].[tblGallery] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tblMenu] ON 
+
+GO
+INSERT [dbo].[tblMenu] ([Id], [MenuName], [MenuDescription], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (1, N'Home', N'aaa', 1, CAST(N'2018-10-28 00:00:00.000' AS DateTime), CAST(N'2018-10-28 00:00:00.000' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[tblMenu] ([Id], [MenuName], [MenuDescription], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (2, N'About', N'bbb', 1, CAST(N'2018-10-20 00:00:00.000' AS DateTime), CAST(N'2018-10-28 00:00:00.000' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[tblMenu] ([Id], [MenuName], [MenuDescription], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (3, N'Ourschool', N'ccc', 1, CAST(N'2018-10-28 00:00:00.000' AS DateTime), CAST(N'2018-10-28 00:00:00.000' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[tblMenu] ([Id], [MenuName], [MenuDescription], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (4, N'Curriculum', N'ddd', 1, CAST(N'2018-10-28 00:00:00.000' AS DateTime), CAST(N'2018-10-28 00:00:00.000' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[tblMenu] ([Id], [MenuName], [MenuDescription], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (5, N'GeneralInfo', N'eee', 1, CAST(N'2018-10-02 00:00:00.000' AS DateTime), CAST(N'2018-10-28 00:00:00.000' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[tblMenu] ([Id], [MenuName], [MenuDescription], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (6, N'Gallery', N'fff', 1, CAST(N'2018-10-28 00:00:00.000' AS DateTime), CAST(N'2018-10-28 00:00:00.000' AS DateTime), N'101', N'101')
+GO
+INSERT [dbo].[tblMenu] ([Id], [MenuName], [MenuDescription], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (7, N'ContactUs', N'ggg', 1, CAST(N'2018-10-28 00:00:00.000' AS DateTime), CAST(N'2018-10-28 00:00:00.000' AS DateTime), N'101', N'101')
+GO
+SET IDENTITY_INSERT [dbo].[tblMenu] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tblSubMenu] ON 
+
+GO
+INSERT [dbo].[tblSubMenu] ([Id], [MainMenuId], [MenuName], [MenuText], [MenuDescription], [IsActive], [CreatedDate], [ModifiedDate], [CreatedBy], [ModifiedBy]) VALUES (28, 1, N'f', N'<table align="center" cellpadding="0" cellspacing="0" style="color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:12px; width:650px">
+	<tbody>
+		<tr>
+			<td>
+			<div style="border-bottom:5px solid #4a83d4; padding:20px 0"><a href="_RouteUrlPath"><img alt="" src="http://knowbles.flexsin.in/images/DefaultLogo.jpg" /></a></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+			<div style="border-top:none; border:1px solid #4a83d4; color:#333333; font-size:15px; line-height:24px; padding:35px 20px">
+			<table cellpadding="0" cellspacing="0" style="width:100%">
+				<tbody>
+					<tr>
+						<td style="vertical-align:top"><strong>Dear </strong>&nbsp;&nbsp;<strong> User </strong>,<br />
+						<br />
+						Thank you for registering with Knowbles.<br />
+						<strong><a href="_EmailVarificationUrl">Click here to verify your email</a></strong><br />
+						<br />
+						<!--<strong style="color:#4a83d4"><a href="_ResetPasswordUrl">Click here to reset password</a>   </strong>--><br />
+						<br />
+						Sincerely yours,<br />
+						Knowbles team</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div style="color:#eeeeee; padding:10px">&copy; 2016 Knowbles. All Rights Resevred.</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+', N'g', 1, CAST(N'2017-07-30 05:20:32.977' AS DateTime), CAST(N'2020-02-20 00:33:38.137' AS DateTime), N'101', N'101')
+GO
+SET IDENTITY_INSERT [dbo].[tblSubMenu] OFF
+GO
+INSERT [dbo].[UserDetails] ([Id], [DateOfBirth], [Gender], [CurCountry], [CurState], [CurCity], [CurZipCode], [CurAddress1], [CurAddress2], [ProfileUrl]) VALUES (1, CAST(N'1996-09-23 00:00:00.000' AS DateTime), 1, 1, 1, 1, N'898989', N'Noida', N'Delhi', N'../AdminAsset/assets/images/users/d1.jpg')
+GO
+INSERT [dbo].[UserDetails] ([Id], [DateOfBirth], [Gender], [CurCountry], [CurState], [CurCity], [CurZipCode], [CurAddress1], [CurAddress2], [ProfileUrl]) VALUES (2, CAST(N'1996-09-23 00:00:00.000' AS DateTime), 1, 1, 1, 1, N'898989', N'Noida', N'Delhi', N'../AdminAsset/assets/images/users/d1.jpg')
+GO
+INSERT [dbo].[UserDetails] ([Id], [DateOfBirth], [Gender], [CurCountry], [CurState], [CurCity], [CurZipCode], [CurAddress1], [CurAddress2], [ProfileUrl]) VALUES (3, CAST(N'1996-09-23 00:00:00.000' AS DateTime), 1, 1, 1, 1, N'898989', N'Noida', N'Delhi', N'../AdminAsset/assets/images/users/d1.jpg')
+GO
+SET IDENTITY_INSERT [dbo].[Users] ON 
+
+GO
+INSERT [dbo].[Users] ([Id], [UserTypeId], [FirstName], [LastName], [Email], [PhoneNumber], [WorkPhone], [UserName], [SaltKey], [PasswordHash], [DefaultPassword], [LastLoginDate], [IsOnLine], [AccountStatus], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [IsActive], [IsDeleted], [AssignedRegionId]) VALUES (1, 1, N'SuperAdmin', N'SuperAdmin', N'SuperAdmin@SuperAdmin.com', NULL, NULL, NULL, NULL, N'5f4dcc3b5aa765d61d8327deb882cf99', 0, CAST(N'2020-02-19 23:48:16.087' AS DateTime), 1, 1, NULL, NULL, CAST(N'2018-01-31 23:40:11.900' AS DateTime), NULL, NULL, 1, 0, NULL)
+GO
+INSERT [dbo].[Users] ([Id], [UserTypeId], [FirstName], [LastName], [Email], [PhoneNumber], [WorkPhone], [UserName], [SaltKey], [PasswordHash], [DefaultPassword], [LastLoginDate], [IsOnLine], [AccountStatus], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [IsActive], [IsDeleted], [AssignedRegionId]) VALUES (2, 2, N'Admin', N'Admin', N'Admin@Admin.com', N'9026457896', NULL, NULL, NULL, N'5f4dcc3b5aa765d61d8327deb882cf99', 0, CAST(N'2020-02-22 17:26:18.250' AS DateTime), 1, 1, 1, 1, CAST(N'2018-01-31 23:42:06.370' AS DateTime), 1, CAST(N'2018-06-06 14:56:47.337' AS DateTime), 1, 0, NULL)
+GO
+INSERT [dbo].[Users] ([Id], [UserTypeId], [FirstName], [LastName], [Email], [PhoneNumber], [WorkPhone], [UserName], [SaltKey], [PasswordHash], [DefaultPassword], [LastLoginDate], [IsOnLine], [AccountStatus], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [IsActive], [IsDeleted], [AssignedRegionId]) VALUES (3, 3, N'User', N'User', N'User@User.com', N'8767897890', NULL, NULL, NULL, N'5f4dcc3b5aa765d61d8327deb882cf99', 0, CAST(N'2018-03-12 19:39:15.357' AS DateTime), 0, 1, 1, 1, CAST(N'2018-03-12 19:38:38.227' AS DateTime), 1, CAST(N'2018-06-06 14:57:15.747' AS DateTime), 1, 0, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Users] OFF
+GO
+SET IDENTITY_INSERT [dbo].[UserTypes] ON 
+
+GO
+INSERT [dbo].[UserTypes] ([Id], [Name], [Code], [CreatedOn], [IsActive]) VALUES (1, N'SuperAdmin', N'SuperAdmin', CAST(N'2018-01-31 23:40:11.807' AS DateTime), 1)
+GO
+INSERT [dbo].[UserTypes] ([Id], [Name], [Code], [CreatedOn], [IsActive]) VALUES (2, N'Admin', N'Admin', CAST(N'2018-01-31 23:40:11.883' AS DateTime), 1)
+GO
+INSERT [dbo].[UserTypes] ([Id], [Name], [Code], [CreatedOn], [IsActive]) VALUES (3, N'User', N'User', CAST(N'2018-01-31 23:40:11.883' AS DateTime), 1)
+GO
+SET IDENTITY_INSERT [dbo].[UserTypes] OFF
+GO
+ALTER TABLE [dbo].[tblSubMenu]  WITH CHECK ADD  CONSTRAINT [FK_tblSubMenu_tblMenu] FOREIGN KEY([MainMenuId])
+REFERENCES [dbo].[tblMenu] ([Id])
+GO
+ALTER TABLE [dbo].[tblSubMenu] CHECK CONSTRAINT [FK_tblSubMenu_tblMenu]
+GO
+ALTER TABLE [dbo].[UserDetails]  WITH CHECK ADD  CONSTRAINT [FK__UserDetails__Users__Id] FOREIGN KEY([Id])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[UserDetails] CHECK CONSTRAINT [FK__UserDetails__Users__Id]
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK__UserTypeId__UserType__Id] FOREIGN KEY([UserTypeId])
+REFERENCES [dbo].[UserTypes] ([Id])
+GO
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK__UserTypeId__UserType__Id]
+GO
+/****** Object:  StoredProcedure [dbo].[GetGalleryItem]    Script Date: 17-03-2020 23:42:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[GetGalleryItem] 
+@Id as Bigint
+AS
+BEGIN
+SET NOCOUNT OFF;
+If(@Id ='' or @Id=null or @Id=0 )
+				BEGIN
+				select g.id,GalleryName,	GalleryPath,TypeId
+				,	g.IsActive	,g.CreatedDate	,g.ModifiedDate,	g.CreatedBy	,g.ModifiedBy ,m.AlbumName,g.Title
+				from  tblGallery g join mtbAlbum m on m.id=g.TypeId
+				
+				END
+	else
+		BEGIN
+				select g.id,GalleryName,GalleryPath,TypeId
+				,	g.IsActive	,g.CreatedDate	,g.ModifiedDate,	g.CreatedBy	,g.ModifiedBy ,m.AlbumName,g.Title
+				from  tblGallery g join mtbAlbum m on m.id=g.TypeId where g.Id=@Id
+				
+					
+				END	
+End
+
+
+GO
+USE [master]
+GO
+ALTER DATABASE [Restaurant] SET  READ_WRITE 
+GO

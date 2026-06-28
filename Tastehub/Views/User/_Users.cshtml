@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<TastehubModel.ViewModel.UserViewModel>
+@using PagedList.Mvc;
+@{
+    Layout = null;
+}
+
+
+<table id="zero_config" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Last Name</th>
+            <th>Role</th>
+            <th>LastLoginDate</th>
+            <th>Image</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TastehubModel.ViewModel.UserViewModel entity in Model)
+        {
+        <tr>
+            <td>@entity.Id</td>
+            <td>@entity.FullName</td>
+            <td>@entity.UserType.Name</td>
+            <td>@entity.LastLoginDate</td>
+            <td>
+                @if (entity.UserDetail != null && entity.UserDetail.ProfileUrl != null)
+                {
+                    <img src="@entity.UserDetail.ProfileUrl" style="width: 150px;" />
+                }
+                else
+                {
+                    <img src = "../AdminAsset/assets/images/users/profile.png" style="width: 150px;"/>
+                }
+
+            </td>
+            <td>@entity.Email</td>
+            <td>
+                @*<a class="btn btn-outline-info btn-xs linkbutton"
+                   href="@Url.Action("AddUser", "User"
+                    ,new {data=entity.Id})" name="edit"><i class="fa fa-edit"></i>Edit</a>&nbsp;*@
+
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        @*<tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>*@
+    </tfoot>
+
+</table>
+
+@*<script src="~/AdminAsset/assets/extra-libs/DataTables/datatables.min.js"></script>*@
+<script>
+    /****************************************
+     *       Basic Table                   *
+     ****************************************/
+    $('#zero_config').DataTable();
+</script>

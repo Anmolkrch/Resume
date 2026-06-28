@@ -1,0 +1,48 @@
+﻿@model TastehubModel.ViewModel.ProductViewModel
+@{
+    ViewBag.Title = "ItemDetail";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+<!-- //features -->
+<!-- about-team -->
+<div class="about team" style="padding-bottom:1em">
+    <div class="container">
+        <div class="team-row-agileinfo col-md-8">
+            <div class="col-md-12 col-sm-12 col-xs-6 team-grids">
+                <div class="thumbnail team-agileits" style="position: static !important; margin-bottom: 0%;">
+                    <img src=@Model.ProductImage.Replace("../","../../") class="img-responsive" alt="" />
+        
+                    <div class="col-md-12">
+                        <h4>$ @Model.Price</h4>
+                        <a style="display: inline;" href="@Url.Action("Item", "Home")">
+                            <div class="social-w3licon item-btn-color cart addcart display" full="" attr="1" itemid="1">
+                                Back to List
+                      
+                        </div>
+                          </a>
+                    </div>
+                  
+                </div>
+                
+            </div>
+           
+            <div class="about">
+                    <div class="w3ls-title">
+                        <h3 class="agileits-title">@Model.ProductName</h3>
+                    </div>
+                    <p class="about-w3text">
+                        @Model.Description
+                    </p>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>
+
+
+

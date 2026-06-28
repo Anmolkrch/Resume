@@ -1,0 +1,131 @@
+﻿@model TastehubModel.ViewModel.SubMainMenuViewModel
+@{
+    ViewBag.Title = "AddWebsiteContent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Themes/ckeditor/ckeditor.js"></script>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Form Basic</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @using (Html.BeginForm("AddWebsiteContent", "Admin",
+                        new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+                        new { @class = "form-horizontal", role = "form", @id = "formAddWebsite" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.MainMenuId)
+                        <div class="card-body">
+                            <h4 class="card-title">Page Info</h4>
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Menu Description</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x => x.MenuDescription, new { @class = "form-control", @placeholder = "Menu Description" })
+                                    @Html.ValidationMessageFor(m => m.MenuDescription, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Menu Text</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x => x.MenuName, new { @class = "form-control", @placeholder = "Menu Name" })
+                                    @Html.ValidationMessageFor(m => m.MenuName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Page Content</label>
+                                <div class="col-sm-9">
+                                    @Html.TextAreaFor(x => x.MenuText, new { @class = "form-control", @placeholder = "Menu MenuText" })
+                                    @Html.ValidationMessageFor(m => m.MenuText, "", new { @class = "text-danger" })
+                                    <script>
+
+                                        CKEDITOR.replace("MenuText");
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <a href="@Url.Action("ManageWebsiteContent", "Admin" )" class="btn btn-danger" name="Cancel">Cancel</a>
+                                @*<button type="submit" class="btn btn-primary">Reset</button>
+                    <button type="submit" class="btn btn-info">Edit</button>
+                    <button type="submit" class="btn btn-danger">Cancel</button>*@
+                            </div>
+                        </div>
+                    }
+                   
+                </div>
+                
+
+            </div>
+            
+        </div>
+        <!-- editor -->
+        
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by . Designed and Developed by <a href="http://brajeshkumar.co.in/">Brajesh Kumar</a><a href="http://brajeshkumar.co.in/"></a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<script src="~/Assets/js/jquery-2.1.4.min.js"></script>
+<script>
+    $("#save").click(function () {
+        debugger;
+        var content = CKEDITOR.instances.MenuText.getData();
+        $("#MenuText").val(content);
+        $("#save").submit();
+    });
+   
+</script>

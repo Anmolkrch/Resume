@@ -1,0 +1,361 @@
+﻿@using Tastehub.Web.Helper;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Taste Hub| Resturant and Take Away  </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Taste Hub| Resturant and Take Away " />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="../../Assets/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../../Assets/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../../Assets/css/font-awesome.css" rel="stylesheet"> <!-- font-awesome icons -->
+    <link rel="stylesheet" href="../../Assets/css/smoothbox.css" type='text/css' media="all" />
+    <!-- //Custom Theme files -->
+    <!-- js -->
+    <script src="../../Assets/js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- //web-fonts -->
+</head>
+<body>
+    <!-- banner -->
+    <div class="banner">
+        <!-- header -->
+        <div class="header">
+            <div class="container">
+                <div class="col-md-6">
+                    <div class="logo">
+                        <h1>  <a href="@Url.Action("index", "Home")"><img src="/Assets/images/logoindianlotus.png" style=" height: 3%;width: 33%;"></a></h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @if (!UserAuthenticate.IsAuthenticated)
+                    {
+                        <div class="menu">
+                            <a href="#" class="navicon"></a>
+                            <div class="toggle">
+                                <ul class="toggle-menu">
+                                    <li><a href="@Url.Action("index", "Home")" class="active"> Home</a></li>
+                                    <li><a href="@Url.Action("About", "Home")"> About</a></li>
+                                    <li><a href="@Url.Action("Gallery", "Home")"> Gallery</a></li>
+                                    <li><a href="@Url.Action("Item", "Home")"> Menu</a></li>
+                                    <li><a href="@Url.Action("contact", "Home")"> Contact Us</a></li>
+                                    @if (!UserAuthenticate.IsAuthenticated)
+                                    {
+                                        <li><a href="#LoginModel" data-toggle="modal"> Login</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>}
+                    else
+                    {
+                        <div class="menu">
+                            <a href="#" class="navicon"></a>
+                            <div class="toggle">
+                                <ul class="toggle-menu">
+                                    <li><a href="@Url.Action("index", "Home")" class="active"> Home</a></li>
+                                    <li><a href="@Url.Action("About", "Home")"> About</a></li>
+                                    <li><a href="@Url.Action("Gallery", "Home")"> Gallery</a></li>
+                                    <li><a href="@Url.Action("Item", "Home")"> Menu</a></li>
+                                    <li><a href="@Url.Action("contact", "Home")"> Contact Us</a></li>
+                                    <li><a href="@Url.Action("MyOrder", "Home")"> My Order</a></li>
+                                    <li><a href="@Url.Action("MyAddresses", "Home")">My Addresses</a></li>
+                                    <li><a href="@Url.Action("MyCart", "Home")">My Cart</a></li>
+                                    <li><a href="@Url.Action("LogOff", "Account")">Log Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                   
+                    <div class="social-w3licon" style="background: red;">
+                        <a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/indianlotusrestaurant/?modal=admin_todo_tour"
+                           target="_blank" class="social-button facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="social-button dribbble"><i class="fa fa-dribbble"></i></a>
+                    </div>
+                    @*}*@
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <!-- //header -->
+        <!-- banner-text -->
+        <div class="banner-text w3labout-bnr">
+            <div class="container">
+                <h2><a href="@Url.Action("index", "Home")">Home</a> / @ViewBag.Title</h2>
+            </div>
+        </div>
+        <!-- //banner-text -->
+    </div>
+    @RenderBody()
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-5 col-sm-5 agileinfo_footer_grid">
+                <h3 class="agileits-title">About Us</h3>
+                <p>
+                    Taste Hubteam offering latest and innovative dishes On Our tasty menu
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-3 col-sm-3 agileinfo_footer_grid mid-w3l nav2">
+                <h3 class="agileits-title">Popular</h3>
+                <ul>
+                    <li><a href="#menu1Model" data-toggle="modal"><i class="fa fa-arrow-right"></i> Dishes 1</a></li>
+                    <li><a href="#menu2Model" data-toggle="modal"><i class="fa fa-arrow-right"></i> Dishes 2</a></li>
+                    <li><a href="#menu3Model" data-toggle="modal"><i class="fa fa-arrow-right"></i> Dishes 3</a></li>
+                    <li><a href="#menu4Model" data-toggle="modal"><i class="fa fa-arrow-right"></i> Dishes 4</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-4 agileinfo_footer_grid">
+                <h3 class="agileits-title">Address</h3>
+                <ul>
+                    <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 42/7 Silverstream Boulevard, Kaiapoi, Christchurch 8073</li>
+                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:Indianlotusrestaurant@gmail.com?subject=Query">Indianlotusrestaurant@gmail.com</a></li>
+                    <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <a href="tel:643039301114">039301114</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+            <div class="w3agile_footer_copy">
+                <p>© 2020 Indian Lotus. All rights reserved <a href="#" target="_blank">.</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- //footer -->
+    <!-- modal-about -->
+    <div class="modal bnr-modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+                    <img src="../../Assets/images/g2.jpg" class="img-responsive" alt="" />
+                    <div class="modal-w3lstext">
+                        <h4>Blanditiis deleniti</h4>
+                        <p> Taste Hubteam offering latest and innovative dishes On Our tasty menu .</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal bnr-modal fade" id="menu1Model" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+                    <img src="../../Assets/images/Gallery/d1.jpg" class="img-responsive" alt="" />
+                    <div class="modal-w3lstext">
+                        <h4>Blanditiis deleniti</h4>
+                        <p> menu1Model</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal bnr-modal fade" id="menu2Model" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+                    <img src="../../Assets/images/Gallery/d2.jpg" class="img-responsive" alt="" />
+                    <div class="modal-w3lstext">
+                        <h4>Blanditiis deleniti</h4>
+                        <p> menu2Model</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal bnr-modal fade" id="menu3Model" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+                    <img src="../../Assets/images/Gallery/d3.jpg" class="img-responsive" alt="" />
+                    <div class="modal-w3lstext">
+                        <h4>Blanditiis deleniti</h4>
+                        <p> menu3Model</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal bnr-modal fade" id="menu4Model" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+                    <img src="../../Assets/images/Gallery/d4.jpg" class="img-responsive" alt="" />
+                    <div class="modal-w3lstext">
+                        <h4>Blanditiis deleniti</h4>
+                        <p> menu4Model</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal bnr-modal fade" id="LoginModel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+
+                    <div class="login-model-popup">
+
+                        <div class="cuisine">
+                            <span class="glyphicon glyphicon-user txtName" aria-hidden="true"></span>
+                            <input type="text" id="txtLoginEmail" name="txtEmail" placeholder="Name" required="" class="txtName">
+                        </div>
+                        <div class="clearfix"> </div>
+                        <div class="phone_email" style="width: 100%;">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <input type="password" id="Password" name="Password" placeholder="Password" required="">
+                        </div>
+                        <div class="clearfix"> </div>
+                        <div class="alert alert-success agileits hide" role="alert" id="spanSuccessLogin" style="margin-top: 20px;">
+                            <strong>Well done!</strong> You successfully read this important alert message.
+                        </div>
+                        <div class="clearfix"> </div>
+
+                        <div class="date_btn">
+                            <div style="text-align: center;"> dont have account ?<a href="@Url.Action("Register", "Account")" data-toggle="modal"> Register</a></div>
+
+                            <input type="button" id="btn_Login" value="Login">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="succes-add-to-cart" class="modal fade in" aria-hidden="false" style="padding-right: 17px;">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header" style="pointer-events: none;">
+                    <div class="icon-box" style=" text-align: center;">
+                        <a href="#" class=""><i class="fa fa-twitter"></i></a>
+                    </div>
+                    <h4 class="modal-title" style="text-align:center">Awesome!</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center" id="itemCartMessage">Item Added in your cart.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="succes-Order_placed" class="modal fade in" aria-hidden="false" style="padding-right: 17px;">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header" style="pointer-events: none;">
+                    <div class="icon-box" style=" text-align: center;">
+                        <a href="#" class=""><i class="fa fa-twitter"></i></a>
+                    </div>
+                    <h4 class="modal-title" style="text-align:center">Awesome!</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Your Order has been place .Soon you will get confirmation </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //modal-about -->
+    <!-- menu-js -->
+    <script>
+        $('.navicon').on('click', function (e) {
+            e.preventDefault();
+            $(this).toggleClass('navicon--active');
+            $('.toggle').toggleClass('toggle--active');
+        });
+    </script>
+    <!-- //menu-js -->
+    <!-- jarallax -->
+    <script src="../../Assets/js/SmoothScroll.min.js"></script>
+    <script src="../../Assets/js/jarallax.js"></script>
+    <script type="text/javascript">
+        /* init Jarallax */
+        $('.jarallax').jarallax({
+            speed: 0.5,
+            imgWidth: 1366,
+            imgHeight: 768
+        })
+    </script>
+    <!-- //jarallax -->
+    <!-- start-smooth-scrolling -->
+    <script type="text/javascript" src="../../Assets/js/move-top.js"></script>
+    <script type="text/javascript" src="../../Assets/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../Assets/js/bootstrap.js"></script>
+    <script src="~/Assets/ApplicationJs/Home.js"></script>
+    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5ea533ee35bcbb0c9ab4ba92/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
+</body>
+</html>
