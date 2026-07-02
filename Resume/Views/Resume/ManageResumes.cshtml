@@ -49,9 +49,11 @@
                                 <thead>
                                     <tr>
                                         <th>SR No</th>
+                                        <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Resume</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,12 +62,18 @@
                                         var pd = Model.PersonalDetails.FirstOrDefault(x => x.UserId == resume.UserId);
                                         <tr>
                                             <td>@count</td>
-
+                                            <td>@pd.FirstName</td>
                                             <td>@pd.Email</td>
                                             <td>@pd.Phone</td>
                                             <td>
                                                 <a href="@Url.Action("DownloadResume", "Resume", new { resumeId = resume.Id })" class="btn btn-primary btn-sm">
                                                     Download
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn default btn-outline el-link"
+                                                   href="@Url.Action("EditResume", "Resume",new {Id=resume.Id})">
+                                                    <i class="mdi mdi-link"></i>
                                                 </a>
                                             </td>
                                         </tr>

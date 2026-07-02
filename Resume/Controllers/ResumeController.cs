@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Math;
-using DocumentFormat.OpenXml.Packaging;
+﻿using DocumentFormat.OpenXml.Packaging;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
@@ -13,14 +12,16 @@ using System.Web;
 using System.Web.Mvc;
 using Tastehub.Model.ViewModel;
 using Tastehub.Service.ResumeService;
-using Tastehub.Web.Helper;
-
+using Tastehub.Service.UserService;
+using Tastehub.Utility.Helper;
+using TastehubModel.ViewModel;
+using Aspose.Words;
 namespace Tastehub.Controllers
 {
     public class ResumeController : Controller
     {
         private readonly ResumeService _resumeService;
-
+        UserService _userService = new UserService();
         private readonly string[] AllowedExtensions =
         {
             ".pdf",
@@ -57,7 +58,7 @@ namespace Tastehub.Controllers
             try
             {
                 string message;
-
+                int UserId = 0;
                 if (!ValidateResume(ResumeFile, out message))
                 {
                     ModelState.AddModelError("", message);
@@ -70,10 +71,10 @@ namespace Tastehub.Controllers
                     ResumeFile,
                     out relativePath);
 
-                model.UserId = Convert.ToInt32(UserAuthenticate.LogId);
+                
                 model.FilePath = relativePath;
 
-                _resumeService.SaveResume(model);
+                
 
                 string resumeText = ExtractText(
                     physicalPath,
@@ -81,15 +82,13 @@ namespace Tastehub.Controllers
 
                 if (!String.IsNullOrWhiteSpace(resumeText))
                 {
-                    SavePersonalDetails(
-                        resumeText,
-                        model.UserId);
-
+                    UserId=SavePersonalDetails(resumeText);
+                    model.UserId = UserId;
                     GetOtherDetails(
                         resumeText,
                         model.UserId);
                 }
-
+                _resumeService.SaveResume(model);
                 TempData["Message"] =
                     "Resume uploaded successfully.";
 
@@ -112,24 +111,64 @@ namespace Tastehub.Controllers
         #region Manage Resume
 
         public ActionResult ManageResumes()
-        {
-            int userId =
-                Convert.ToInt32(UserAuthenticate.LogId);
-
+        { 
             ManageResumeViewModel model =
                 new ManageResumeViewModel
                 {
                     Resumes =
-                        _resumeService.GetResumeList(userId),
+                        _resumeService.GetResumeList(0),
 
                     PersonalDetails =
-                        _resumeService.GetPersonalDetails(userId)
+                        _resumeService.GetPersonalDetails(0)
                 };
 
             return View(model);
         }
 
         #endregion
+        public ActionResult EditResume(long Id)
+        {
+            var resume = _resumeService.GetResumeById(Id);
+            var personalDetail = _resumeService.GetPersonalDetails(resume.UserId);
+            var education = _resumeService.GetEducationList(resume.UserId);
+            var experience = _resumeService.GetExperienceList(resume.UserId);
+            var skills = _resumeService.GetSkillList(resume.UserId);
+            var model = new EditResumeViewModel
+            {
+                PersonalDetail = personalDetail.FirstOrDefault(),
+                Education = education,
+                Experience = experience,
+                Skills = skills,
+                Resume= resume
+
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditResume(EditResumeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _resumeService.UpdatePersonalDetail(model.PersonalDetail);
+
+                foreach (var edu in model.Education)
+                    _resumeService.UpdateEducation(edu);
+
+                foreach (var exp in model.Experience)
+                    _resumeService.UpdateExperience(exp);
+
+                foreach (var skill in model.Skills)
+                    _resumeService.UpdateSkill(skill);
+
+                TempData["Message"] = "Resume details updated successfully.";
+                return RedirectToAction("ManageResumes");
+            }
+
+            return View(model);
+        }
 
         #region Download Resume
 
@@ -158,38 +197,40 @@ namespace Tastehub.Controllers
 
         #region Save Personal Details
 
-        private void SavePersonalDetails(
-            string resumeText,
-            long userId)
+        private int SavePersonalDetails(string resumeText)
         {
             string email = "";
-
-            Match emailMatch = Regex.Match(
-                resumeText,
-                @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}");
-
-            if (emailMatch.Success)
-                email = emailMatch.Value;
+            var emailMatch = Regex.Match(resumeText, @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}");
+            if (emailMatch.Success) email = emailMatch.Value;
 
             string phone = "";
+            var phoneMatch = Regex.Match(resumeText, @"(\+91[- ]?)?[6-9]\d{9}");
+            if (phoneMatch.Success) phone = phoneMatch.Value;
 
-            Match phoneMatch = Regex.Match(
-                resumeText,
-                @"(\+91[- ]?)?[6-9]\d{9}");
+            // Register user
+            UserViewModel userViewModel = new UserViewModel
+            {
+                Email = email,
+                PhoneNumber=phone,
+                UserTypeId= 3,
+                PasswordHash = SecurityHelper.CreatePasswordHash("defaultPassword", "")
+            };
+            var user = _userService.RegisterUsers(userViewModel);
 
-            if (phoneMatch.Success)
-                phone = phoneMatch.Value;
+            var newUserId = (int)user.Id;
 
-            PersonalDetailViewModel vm =
-                new PersonalDetailViewModel
-                {
-                    UserId = userId,
-                    Email = email,
-                    Phone = phone
-                };
-
+            // Save personal detail
+            PersonalDetailViewModel vm = new PersonalDetailViewModel
+            {
+                UserId = newUserId,
+                Email = email,
+                Phone = phone
+            };
             _resumeService.SavePersonalDetail(vm);
+
+            return newUserId;
         }
+
 
         #endregion
         #region Resume Validation
@@ -369,13 +410,8 @@ namespace Tastehub.Controllers
         {
             try
             {
-                // Legacy DOC support.
-                // Recommended:
-                // Aspose.Words
-                // NPOI
-                // Spire.Doc
-
-                return "";
+                Document doc = new Document(path);
+                return doc.ToString(SaveFormat.Text);
             }
             catch (Exception ex)
             {

@@ -48,6 +48,9 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Aspose.Words, Version=26.6.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Words.26.6.0\lib\net35\Aspose.Words.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=3.5.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.3.5.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
@@ -984,6 +987,7 @@
     <Content Include="Assets\gallery.html" />
     <Content Include="Assets\icons.html" />
     <Content Include="Assets\images\1.jpg" />
+    <Content Include="Assets\images\1logoindianlotus.png" />
     <Content Include="Assets\images\bg.jpg" />
     <Content Include="Assets\images\dummy\1.jpg" />
     <Content Include="Assets\images\dummy\1.png" />
@@ -1063,6 +1067,8 @@
     <Content Include="Assets\images\Gallery\spinach.jpg" />
     <Content Include="Assets\images\line.png" />
     <Content Include="Assets\images\load.gif" />
+    <Content Include="Assets\images\logo indian lotus.png" />
+    <Content Include="Assets\images\logo indian lotus1.png" />
     <Content Include="Assets\images\logo.jpg" />
     <Content Include="Assets\images\logoindianlotus.png" />
     <Content Include="Assets\images\move-top.png" />
@@ -1070,6 +1076,75 @@
     <Content Include="Assets\images\t6.jpg" />
     <Content Include="Assets\images\t7.jpg" />
     <Content Include="Assets\images\t8.jpg" />
+    <Content Include="Assets\images\UploadImage\00165a9d-3c18-43c0-a26c-6df6fc27f544.jpg" />
+    <Content Include="Assets\images\UploadImage\04a125cf-a732-4668-a9bd-4469f968bb76.jpg" />
+    <Content Include="Assets\images\UploadImage\076a4dc9-8b45-457b-8019-91f3999e317c.jpg" />
+    <Content Include="Assets\images\UploadImage\0cfc876f-85c2-4904-addb-abe9450ae140.jpg" />
+    <Content Include="Assets\images\UploadImage\10040b34-9202-48c5-a6e7-57a5f1acc09a.jpg" />
+    <Content Include="Assets\images\UploadImage\1008486d-1e5e-4a23-bc2a-06bde4dde227.jpg" />
+    <Content Include="Assets\images\UploadImage\144d6046-4890-4d97-9fad-c228518a5bd8.jpg" />
+    <Content Include="Assets\images\UploadImage\17c534b6-2668-4ce6-9d06-9d9acfe9e73b.jpg" />
+    <Content Include="Assets\images\UploadImage\22080fb9-db6f-4054-bdef-9fb4cb8940a6.jpg" />
+    <Content Include="Assets\images\UploadImage\222a1c41-f10d-474a-af0e-da1a11be82c1.jpg" />
+    <Content Include="Assets\images\UploadImage\298be87d-267d-4872-92b1-4c3c0a9f457d.jpg" />
+    <Content Include="Assets\images\UploadImage\2bf899ee-cea9-4b7c-b207-b95baf89f2e9.jpg" />
+    <Content Include="Assets\images\UploadImage\3082871b-fb50-4290-8db2-2072d77f9f69.jpg" />
+    <Content Include="Assets\images\UploadImage\317b6de2-2b61-4c29-a943-4095fc315a87.jpg" />
+    <Content Include="Assets\images\UploadImage\331cc27d-ab95-41cd-be18-178e7dbad97c.jpg" />
+    <Content Include="Assets\images\UploadImage\401871b8-577f-469f-bfa0-6825afc266fd.jpg" />
+    <Content Include="Assets\images\UploadImage\44bf27e0-66ff-4f89-bd0d-4ee9afae9230.jpg" />
+    <Content Include="Assets\images\UploadImage\4e5114a9-fc1e-4a79-ad8d-6775e2869084.jpg" />
+    <Content Include="Assets\images\UploadImage\5339d2fa-2619-43f8-aad8-3553117f378a.jpg" />
+    <Content Include="Assets\images\UploadImage\579609a2-d2a9-4a84-bdd0-f99eccb8ca67.jpg" />
+    <Content Include="Assets\images\UploadImage\5b49fc1a-a6aa-4591-997c-a58df0c5e8be.jpg" />
+    <Content Include="Assets\images\UploadImage\60186ccd-1701-4ff0-ba16-500e4b174c5d.jpg" />
+    <Content Include="Assets\images\UploadImage\65423e00-a75d-4b72-82b5-342a55930c7a.jpg" />
+    <Content Include="Assets\images\UploadImage\6926d6eb-1e68-4d3b-9746-9a8d1d4cb0b2.jpg" />
+    <Content Include="Assets\images\UploadImage\69f627ee-998c-46e2-8210-c60eecdce65e.jpg" />
+    <Content Include="Assets\images\UploadImage\6d9fa070-1bb7-4630-acb6-9b4988ce96a4.jpg" />
+    <Content Include="Assets\images\UploadImage\7285c3d0-8120-4a33-8db5-bd62e85097ef.jpg" />
+    <Content Include="Assets\images\UploadImage\7b1a23d8-caba-4ad4-9aa7-9c7d43642a16.jpg" />
+    <Content Include="Assets\images\UploadImage\7c2135fe-fbc6-40dc-86ac-ba2007d3336b.jpg" />
+    <Content Include="Assets\images\UploadImage\7d276e5e-cabc-42d6-a02b-2a2291b1ca1e.jpg" />
+    <Content Include="Assets\images\UploadImage\7e714733-1c25-47ab-aafa-4cdf1b46b6a2.jpg" />
+    <Content Include="Assets\images\UploadImage\86655725-6e63-4e0f-9a01-cbaec69e6598.jpg" />
+    <Content Include="Assets\images\UploadImage\869aef05-4756-4b9e-8f55-42c6e1a55af8.jpg" />
+    <Content Include="Assets\images\UploadImage\8889d391-51d0-42cb-a5db-7095f2c16528.jpg" />
+    <Content Include="Assets\images\UploadImage\8f9f2077-4e6c-46c7-b07a-f44a866c191f.jpg" />
+    <Content Include="Assets\images\UploadImage\9120d058-b11c-42f8-b97d-7665ab593f19.jpg" />
+    <Content Include="Assets\images\UploadImage\9614d3c4-83b7-4720-961f-f834f7873df0.jpg" />
+    <Content Include="Assets\images\UploadImage\982331dc-8447-4e56-a43e-8cfaf39f44bd.jpg" />
+    <Content Include="Assets\images\UploadImage\99ba1042-7a84-4e7f-8204-d5e5165103f6.jpg" />
+    <Content Include="Assets\images\UploadImage\9fe582a9-9a35-4261-b57d-f66123ffbc69.jpg" />
+    <Content Include="Assets\images\UploadImage\a057afe3-b7f3-4d8c-92de-67830d2fcb45.jpg" />
+    <Content Include="Assets\images\UploadImage\a297d735-29aa-433f-846d-fbf4fbc8c1a2.jpg" />
+    <Content Include="Assets\images\UploadImage\a2ae75b1-f06d-43f5-b9cd-823f3fab92e2.jpg" />
+    <Content Include="Assets\images\UploadImage\a57c5fe6-dd03-4a56-be12-cb2fb351e6ca.jpg" />
+    <Content Include="Assets\images\UploadImage\a5dfbd99-cd20-4ea3-93a7-ec7d25104a5e.jpg" />
+    <Content Include="Assets\images\UploadImage\a7a1fa6c-80fa-4f1e-8fbf-46bb6e061462.jpg" />
+    <Content Include="Assets\images\UploadImage\aa9405ab-5342-4059-b13d-8f16ab715c9e.jpg" />
+    <Content Include="Assets\images\UploadImage\b34709d7-1341-48f2-8d3e-794ef750ab94.jpg" />
+    <Content Include="Assets\images\UploadImage\bfceec28-4c47-4b41-ac56-91b214e3ffb7.jpg" />
+    <Content Include="Assets\images\UploadImage\c1041e50-e9f3-45a2-a071-78a4ac4f265a.jpg" />
+    <Content Include="Assets\images\UploadImage\c14c8d9d-16bd-44c3-957b-2f917c360721.jpg" />
+    <Content Include="Assets\images\UploadImage\c41f55db-cced-4898-a49b-ffac1006e171.jpg" />
+    <Content Include="Assets\images\UploadImage\c50b6b3c-d434-4043-a270-b163df3f072e.jpg" />
+    <Content Include="Assets\images\UploadImage\c5dede60-2183-4109-99e9-4559b51da7f1.jpg" />
+    <Content Include="Assets\images\UploadImage\cabc5bc7-6229-4995-8e5b-4f538dbce146.jpg" />
+    <Content Include="Assets\images\UploadImage\cb197fd7-4592-4ef6-a4a3-9275677f3eab.jpg" />
+    <Content Include="Assets\images\UploadImage\d54d4ea6-d6f9-4f47-b5eb-a643ec654566.jpg" />
+    <Content Include="Assets\images\UploadImage\d9606124-2a1f-4b97-834b-0352b5e0da41.jpg" />
+    <Content Include="Assets\images\UploadImage\e05fc977-3073-494f-89ce-dc1ae0dcac3d.jpg" />
+    <Content Include="Assets\images\UploadImage\e2a9f0bf-a0ec-4d47-b499-53c1ef259051.jpg" />
+    <Content Include="Assets\images\UploadImage\e334d4b1-d9be-44c7-8bf2-20bdf734fa8f.jpg" />
+    <Content Include="Assets\images\UploadImage\e7b2fb0c-08d7-4d15-b7f5-e8f2f5aa3cbc.jpg" />
+    <Content Include="Assets\images\UploadImage\ede829e0-d3d8-4d41-9bff-ce2f45d45c55.jpg" />
+    <Content Include="Assets\images\UploadImage\f16cd82f-fd3e-4019-aaeb-fa4795d82712.jpg" />
+    <Content Include="Assets\images\UploadImage\f32102a2-7220-4d74-96fe-aa04f0bd6155.jpg" />
+    <Content Include="Assets\images\UploadImage\f42b3af6-2561-419d-9b2e-feb6b86f7d08.jpg" />
+    <Content Include="Assets\images\UploadImage\f5c538d5-bca2-4e1f-a9db-cd7e080b92c5.jpg" />
+    <Content Include="Assets\images\UploadImage\f8dcdbd9-7b51-42ae-9350-bf6ff2acd298.jpg" />
+    <Content Include="Assets\images\UploadImage\fb0f06f1-9007-461f-97e5-3469bce35987.jpg" />
     <Content Include="Assets\index.html" />
     <Content Include="Assets\js\bars.js" />
     <Content Include="Assets\js\bootstrap.js" />
@@ -1280,6 +1355,20 @@
     <Content Include="AdminAsset\dist\css\icons\weather-icons\sass\weather-icons-wind.scss" />
     <Content Include="AdminAsset\dist\css\icons\weather-icons\sass\weather-icons.min.scss" />
     <Content Include="AdminAsset\dist\css\icons\weather-icons\sass\weather-icons.scss" />
+    <Content Include="Assets\Resume\Ajay Singh.doc" />
+    <Content Include="Assets\Resume\AnmolResumenew.pdf" />
+    <Content Include="Assets\Resume\Anurag Srivastav.pdf" />
+    <Content Include="Assets\Resume\Ashish_Kumar_.Net developer.docx" />
+    <Content Include="Assets\Resume\ayush_4th_year.pdf" />
+    <Content Include="Assets\Resume\Gopika.docx" />
+    <Content Include="Assets\Resume\JatinChauhan__CV.pdf" />
+    <Content Include="Assets\Resume\Nitesh_Jha_Updated_Resume.pdf" />
+    <Content Include="Assets\Resume\Pritiraj R2.pdf" />
+    <Content Include="Assets\Resume\Shivansh-verma-laravel-dev25-1-1.pdf" />
+    <Content Include="Assets\Resume\siva.pdf" />
+    <Content Include="Assets\Resume\Vidhyasagar_Kumar_3+years.pdf" />
+    <Content Include="Assets\Resume\VINAY MISHRA.docx" />
+    <Content Include="Assets\Resume\Vivek_Rao_FullStackJSDeveloper.pdf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -1288,6 +1377,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\ProductImage\ShoppingDoc.docx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1715,25 +1805,15 @@
     <Content Include="Views\Admin\ManagePayment.cshtml" />
     <Content Include="Views\Admin\UserManual.cshtml" />
     <Content Include="Views\Home\ItemDetail.cshtml" />
-    <Content Include="Web - Copy.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web - Copy.Debug.config">
-      <DependentUpon>Web - Copy.config</DependentUpon>
-    </Content>
-    <Content Include="Web - Copy.Release.config">
-      <DependentUpon>Web - Copy.config</DependentUpon>
-    </Content>
     <Content Include="Views\Home\_ItemPartial.cshtml" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Resume\UploadResume.cshtml" />
     <Content Include="Views\Resume\ManageResumes.cshtml" />
+    <Content Include="Views\Resume\EditResume.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\images\UploadImage\" />
-    <Folder Include="Assets\Resume\" />
     <Folder Include="Assets\txt\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Stripe\" />

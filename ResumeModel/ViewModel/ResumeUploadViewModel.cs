@@ -12,10 +12,13 @@ namespace Tastehub.Model.ViewModel
         public string FilePath {get;set;}
         public int UserId { get; set; }
         public int Id { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 
     public class PersonalDetailViewModel
     {
+        public int Id { get; set; }
         public long UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -27,6 +30,7 @@ namespace Tastehub.Model.ViewModel
 
     public class EducationViewModel
     {
+        public int Id { get; set; }
         public long UserId { get; set; }
         public string Degree { get; set; }
         public string Institution { get; set; }
@@ -36,6 +40,7 @@ namespace Tastehub.Model.ViewModel
 
     public class ExperienceViewModel
     {
+        public int Id { get; set; }
         public long UserId { get; set; }
         public string CompanyName { get; set; }
         public string Designation { get; set; }
@@ -46,6 +51,7 @@ namespace Tastehub.Model.ViewModel
 
     public class SkillViewModel
     {
+        public int Id { get; set; }
         public long UserId { get; set; }
         public string SkillName { get; set; }
         public string ProficiencyLevel { get; set; }
@@ -54,6 +60,14 @@ namespace Tastehub.Model.ViewModel
     {
         public List<ResumeUploadViewModel> Resumes { get; set; }
         public List<PersonalDetailViewModel> PersonalDetails { get; set; }
+    }
+    public class EditResumeViewModel
+    {
+        public PersonalDetailViewModel PersonalDetail { get; set; }
+        public List<EducationViewModel> Education { get; set; }
+        public List<ExperienceViewModel> Experience { get; set; }
+        public List<SkillViewModel> Skills { get; set; }
+        public ResumeUploadViewModel Resume { get; set; }
     }
 
 }
